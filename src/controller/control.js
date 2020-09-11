@@ -1,6 +1,9 @@
 const data = require("../model/data");
+const express = require("express");
+const router = express.Router();
 const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
+router.use(bodyparser.json());
 const async = require("async")
 
 module.exports = {
@@ -8,8 +11,10 @@ module.exports = {
         try{
             const Data = new data(req.body);
             console.log(Data);
-            var j = Data.number;
-            var i,c=0,b;
+            let a = Data.number1;
+            let b = Data.number2;
+            let c = a * b;
+            /*var i,c=0,b;
             for(i=j;i>0;i=i/10);
             {
                 b = i%10;
@@ -19,8 +24,11 @@ module.exports = {
             if(j==c)
             res.send("Armstrong Number");
             else
-            res.send("Not Armmstrong Number");
+            res.send("Not Armmstrong Number");*/
             await Data.save();
+            res.send("Output is Ready");
+            console.log("Output is :", c);
+            
             
         }catch(err){
             res.send("Something Went Wrong");
